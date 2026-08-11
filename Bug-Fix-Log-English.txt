@@ -1,0 +1,121 @@
+Megumiaomiao Bug Fix Log
+Author: Aly0 (generated with ChatGPT)
+
+This English log is maintained alongside the Chinese log for every release.
+
+v0.4.27 (2026-08-09)
+- Reworked the player and playlist into a true side-by-side row: player on the left and an equal-height playlist on the right.
+- Expanding the playlist reserves dedicated layout width instead of overlaying the player.
+- Collapsing the playlist restores the full player width and increases its height using the current video's aspect ratio.
+- Player dimensions are recalculated when resizing the window or switching between landscape and portrait media.
+- Added lightweight 120–170ms size and opacity animations for playlist expansion and collapse.
+- Animations affect only the player and sidebar and do not rebuild video cards.
+- Cached cards now render progressively in batches of 32 so the window becomes responsive sooner.
+- Fast library synchronization begins in the background after cached content is visible.
+- Fullscreen mode now preserves and restores the playlist state correctly.
+
+v0.4.26 (2026-08-09)
+- The playlist sidebar is collapsed by default at application startup.
+- A narrow restore button stays attached to the far-right application edge.
+- Starting video playback automatically expands the playlist sidebar.
+- The collapse and restore controls now use matching dimensions, vertical alignment, and opposite arrows.
+- Dedicated space is reserved for the collapsed restore button so it no longer overlaps the library scrollbar.
+- Added persistent playlist memory using a separate JSON file.
+- Adding, removing, or clearing playlist entries is saved immediately.
+- Playlist order is restored after a normal exit or unexpected crash.
+- Temporarily unavailable files are not permanently removed from the stored playlist paths.
+
+v0.4.25 (2026-08-09)
+- Restricted the playlist sidebar to the library row so it no longer shrinks or overlaps the player.
+- Added persistent thumbnail-failure state to prevent the same broken media from retrying on every startup.
+- Source-file changes clear the failure state and allow a new thumbnail attempt.
+- Added bounded FFmpeg timeouts to prevent damaged media from blocking scanning or shutdown.
+- Moved hover-preview settings into the Settings popup and reserved more room for window controls.
+
+v0.4.24 (2026-08-09)
+- Fixed left-click focus in the search box being intercepted by window dragging.
+- Made the playlist sidebar visible independently of playback and reserved stable layout space for it.
+- Fixed video switching covering the playlist sidebar.
+- Multi-select “Add to collection” now opens a collection chooser with names, counts, and selected state.
+
+v0.4.23 (2026-08-09)
+- Added a persistent right-side playlist panel with collapse and restore controls.
+- Improved the card plus-button menu with playlist and collection submenus.
+- Stopped hidden hover previews when changing views to reduce background decoding and memory use.
+
+v0.4.22 (2026-08-09)
+- Added bottom-edge controls in fullscreen mode and single-click play/pause on the video surface.
+- Moved embedded playback, cache, mpv path, and language options into a Settings popup.
+- Added debounced search and reused existing video cards during view changes.
+- Reduced mpv shutdown wait time and added a dark rounded scrollbar style.
+
+v0.4.21 (2026-08-09)
+- Implemented true video-only fullscreen and reliable layout restoration on Esc, Stop, or Close Player.
+- Added dedicated MP3 embedded-album-art extraction.
+- Added search, expandable folder browsing, persistent collections, and global shuffle playback.
+
+v0.4.20 (2026-08-08)
+- Added Ctrl-click multi-select, overview/folder modes, MP3 scanning, album artwork, LRC lyrics, and automatic player collapse after Stop.
+
+v0.4.19 (2026-08-08)
+- Added robust thumbnail and animated-preview fallback positions for short, damaged, and unusual media.
+- Invalid or interrupted preview files are detected and regenerated.
+
+v0.4.18 (2026-08-08)
+- Added independent cache indexes for each media folder.
+- Added fast add/remove synchronization and cancellation of background FFmpeg work during folder switching or shutdown.
+
+v0.4.16 (2026-08-07)
+- Separated standalone IPC from MFP IPC so a normal launch no longer interferes with MFP detection.
+v0.4.28 (2026-08-09)
+- Fixed the thumbnail progress banner remaining visible after reaching completed/total.
+- Added near-black frame detection and automatic sampling at several alternative timestamps.
+- Keeps the last valid frame for genuinely dark videos instead of leaving a permanently blank/loading card.
+- Black-frame analysis runs only during initial thumbnail generation and adds no normal browsing overhead.
+v0.4.29 (2026-08-09)
+- Fixed inconsistent thumbnail progress placement when opening or closing the playlist sidebar.
+- The playlist sidebar can no longer open before media playback starts; it opens automatically when playback begins.
+- Removed the duplicate Playlist button from the player controls and retained the dedicated sidebar tab.
+- Reserved a narrow strip for the collapsed sidebar tab so embedded mpv video cannot cover it.
+- Stopping or closing the player now also hides the playlist and its restore tab.
+- Startup now loads the persisted cache without automatically traversing the media folder; quick sync runs when the folder is selected.
+- Clears stale transient loading flags when a valid cached thumbnail already exists.
+- The window hides immediately on exit while media and scan cleanup finish in the background.
+v0.4.30 (2026-08-09)
+- Added a minimum file-size exclusion setting in MB, applied during quick scanning.
+- Added a minimum duration exclusion setting in seconds, applied after media metadata is read.
+- Adding a card to a playlist or collection now shows a bottom-right notification that disappears after three seconds.
+- The scanner permanently excludes the configured cache directory and every `.VideoShelfCache` subtree.
+- Previously misidentified cached preview entries are removed from the library at startup without deleting original media.
+- MP3 files prioritize embedded album art for their card and playback cover.
+- MP3 files no longer generate unnecessary animated video previews, reducing processing time and resource use.
+- A failed or excluded media item no longer blocks subsequent thumbnail jobs.
+v0.4.31 (2026-08-09)
+- Fixed album-art generation for MP3 metadata containing unescaped control characters that broke full ffprobe JSON parsing.
+- Media probing now reads only duration, width and height, avoiding malformed title tags and improving load speed.
+- Startup repairs only missing MP3 covers and legacy low-quality video thumbnails without rescanning the media folder.
+- Static video covers now select the highest-scoring frame from several timestamps.
+- Strengthened near-black detection using both average brightness and the dark-pixel ratio.
+- Legacy covers are quality-checked only once so genuinely dark videos are not regenerated on every startup.
+- Thumbnail errors are persisted for accurate diagnostics instead of being silently discarded.
+v0.4.32 (2026-08-09)
+- Legacy records with `ThumbnailFailed=true` and no saved error details are retried once automatically.
+- Fixed old failed covers being skipped forever when the source media had not changed.
+- ffmpeg now handles both metadata probing and cover generation, removing the duplicate ffprobe executable.
+- Metadata probing parses only required duration and resolution values and ignores fragile tag content.
+- The package remains self-contained and compatible with MFP/mpv without requiring a separate .NET installation.
+- Reduced the extracted release by approximately 212 MB, also improving archive size and extraction time.
+v0.4.33 (2026-08-09)
+- Fixed double-clicking fullscreen also toggling playback; only a single click now plays or pauses.
+- Added native mpv A-B loop controls: A sets the start, B sets the end, and clicking A again clears an active loop.
+- A-B loop state resets automatically when switching media.
+- In fullscreen, moving the pointer to the bottom reveals controls with a Playlist button for the right sidebar.
+- The fullscreen Playlist button stays hidden in normal mode, which retains the existing right-edge sidebar tab.
+- Added scanning and playback support for WAV, FLAC, M4A, AAC, OGG, OPUS, WMA, APE, ALAC and AIFF/AIF audio.
+- Additional audio formats use embedded artwork when available, otherwise the first image in the same folder.
+v0.4.34 (2026-08-11)
+- Upgraded folder browsing to an Explorer-style tree, breadcrumb path, Back and Up navigation.
+- Folder navigation now reuses the media cache and does not regenerate thumbnails.
+- Search works within the current folder and its descendants.
+- Unified cache and normal-list rendering to reduce startup work.
+- Reused one media-folder index while building the tree to avoid repeated calculations.

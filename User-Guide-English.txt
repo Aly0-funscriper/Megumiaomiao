@@ -1,0 +1,29 @@
+Megumiaomiao User Guide
+By Aly0 (generated with ChatGPT)
+
+1. First use
+Click “Choose folder” to scan videos recursively and create static thumbnails. Click “Choose mpv” and select the real mpv.exe.
+
+2. Playback
+Click a video card to play. Press Space to pause/resume, Left/Right to seek 5 seconds, double-click the video for fullscreen, and Esc to leave fullscreen. The timeline supports clicking and dragging.
+
+3. Preview and cache
+Hover previews are enabled when the “Hover preview” button is blue. The cache can be moved to another drive and reused by later versions.
+
+4. Favorites, playlist, and multi-select
+Use the heart at the top-right of a card to favorite it, the plus button at the bottom-right to add it to the playlist, and the checkbox at the top-left for multi-select. Selected videos can be favorited, queued, or deleted in bulk.
+
+5. MFP mode
+Set MFP's Executable to mpv.exe in the stable MFP launcher folder and keep every file in that folder together. A normal standalone launch uses private IPC and does not claim MFP's pipe.
+
+6. Language
+Use the “EN/中文” button in the top bar to switch languages. A blue button indicates that its feature is enabled.
+
+Playback controls:
+- Single-click the video to play or pause.
+- Double-click the video to enter or leave fullscreen without changing playback state.
+- A / B set the loop start and end; click A again after activation to clear the loop.
+- In fullscreen, move the pointer to the bottom to reveal controls and open the playlist.
+- Supported audio includes MP3, WAV, FLAC, M4A, AAC, OGG, OPUS, WMA, APE, ALAC and AIFF/AIF.
+FOLDER BROWSER
+Choose “Folders” for an Explorer-style view. Use the media-folder tree on the left, Back and Up buttons, or the breadcrumb path above the content. The right pane shows only the current folder's child folders and media. Search includes the current folder and its descendants, and navigation reuses the existing cache without regenerating thumbnails.
