@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net8.0-windows</TargetFramework>
+		<Nullable>enable</Nullable>
+		<UseWPF>true</UseWPF>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<ApplicationIcon>Assets\Huihui.ico</ApplicationIcon>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
+		<PackageReference Include="Microsoft.Data.Sqlite" Version="8.0.8" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Include="Tools\ffmpeg.exe" Link="ffmpeg.exe" CopyToOutputDirectory="PreserveNewest" Condition="Exists('Tools\ffmpeg.exe')" />
+		<Content Include="使用说明-中文.txt" CopyToOutputDirectory="PreserveNewest" />
+		<Content Include="User-Guide-English.txt" CopyToOutputDirectory="PreserveNewest" />
+		<Content Include="Bug修复记录.txt" CopyToOutputDirectory="PreserveNewest" />
+		<Resource Include="Assets\Huihui.ico" />
+		<Resource Include="Assets\Huihui.png" />
+	</ItemGroup>
+
+</Project>
