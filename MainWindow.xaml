@@ -132,7 +132,7 @@
             </StackPanel>
             <TextBlock x:Name="FolderText" Grid.Column="1" Foreground="#9299A8" TextTrimming="CharacterEllipsis" VerticalAlignment="Center"/>
             <StackPanel Grid.Column="2" Orientation="Horizontal">
-                <CheckBox x:Name="FunscriptOnlyCheck" Content="有 funscript" ToolTip="勾选后只显示拥有同名 funscript 的视频" VerticalAlignment="Center" Margin="4,0,12,0" Checked="FunscriptFilterChanged" Unchecked="FunscriptFilterChanged"/>
+                <CheckBox x:Name="FunscriptOnlyCheck" Content="有 funscript" ToolTip="勾选后只显示拥有同名 funscript 的视频" Foreground="#F2F4F8" FontWeight="SemiBold" VerticalAlignment="Center" Margin="4,0,12,0" Checked="FunscriptFilterChanged" Unchecked="FunscriptFilterChanged"/>
                 <ToggleButton x:Name="FavoritesCheck" Style="{StaticResource PreviewToggleStyle}" Content="♥ 收藏夹" ToolTip="只显示已收藏的视频；红心表示收藏" VerticalAlignment="Center" Checked="FavoritesFilterChanged" Unchecked="FavoritesFilterChanged"/>
                 <Button x:Name="CollectionsButton" Content="合集" Background="#3B4354" Click="CollectionsButton_Click"/>
                 <Button x:Name="BulkFavoriteButton" Content="♥ 收藏所选" Visibility="Collapsed" Background="#543642" Click="BulkFavorite_Click"/>
