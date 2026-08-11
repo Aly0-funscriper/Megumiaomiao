@@ -23,4 +23,16 @@
 		<Resource Include="Assets\Huihui.png" />
 	</ItemGroup>
 
+	<!-- MFP expects the configured executable to be named mpv.exe.  This copy is
+	     the Megumiaomiao compatibility launcher; real-mpv.exe remains the player. -->
+	<Target Name="CreateMfpCompatibilityLauncherAfterBuild" AfterTargets="Build"
+			Condition="Exists('$(TargetDir)$(AssemblyName).exe')">
+		<Copy SourceFiles="$(TargetDir)$(AssemblyName).exe" DestinationFiles="$(TargetDir)mpv.exe" />
+	</Target>
+
+	<Target Name="CreateMfpCompatibilityLauncherAfterPublish" AfterTargets="Publish"
+			Condition="Exists('$(PublishDir)$(AssemblyName).exe')">
+		<Copy SourceFiles="$(PublishDir)$(AssemblyName).exe" DestinationFiles="$(PublishDir)mpv.exe" />
+	</Target>
+
 </Project>

@@ -114,6 +114,7 @@ v0.4.33 (2026-08-09)
 - Added scanning and playback support for WAV, FLAC, M4A, AAC, OGG, OPUS, WMA, APE, ALAC and AIFF/AIF audio.
 - Additional audio formats use embedded artwork when available, otherwise the first image in the same folder.
 v0.4.34 (2026-08-11)
+- Fixed the missing `mpv.exe` MFP compatibility launcher in the release package; `real-mpv.exe` remains the actual player.
 - Upgraded folder browsing to an Explorer-style tree, breadcrumb path, Back and Up navigation.
 - Folder navigation now reuses the media cache and does not regenerate thumbnails.
 - Search works within the current folder and its descendants.

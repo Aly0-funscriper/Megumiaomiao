@@ -30,6 +30,8 @@ Megumiaomiao 是一款基于 .NET 8 与 WPF 开发的 Windows 本地媒体库播
 
 建议先在 Megumiaomiao 中播放媒体，再连接 MFP 的 MPV 媒体源。程序会用原始绝对路径打开文件，因此 MFP 可以继续寻找媒体旁边同名的 `.funscript`。
 
+在 MFP 的 MPV 设置中，请将 Executable 指向发布包内的 `mpv.exe`。该文件是 Megumiaomiao 的 MFP 兼容入口；同目录的 `real-mpv.exe` 才是真正负责播放的 mpv，请不要在 MFP 中选择 `real-mpv.exe`。
+
 ### 从源码构建
 
 将可信来源的 `ffmpeg.exe` 放入 `Tools` 文件夹，然后运行：
@@ -72,6 +74,8 @@ When using the Release package, extract it first, launch the application, and se
 The default IPC pipe is `\\.\pipe\multifunplayer-mpv`. When MFP starts Megumiaomiao through the compatibility entry point, command-line `--input-ipc-server` values are honored so different MFP versions can provide their own pipe name.
 
 For best results, start playback in Megumiaomiao and then connect MFP to the MPV source. Media is opened from its original absolute path, allowing MFP to locate a matching `.funscript` beside the media file.
+
+In MFP's MPV settings, point Executable to `mpv.exe` from the release package. It is the Megumiaomiao compatibility launcher. The adjacent `real-mpv.exe` is the actual player and should not be selected in MFP.
 
 ### Build from source
 
