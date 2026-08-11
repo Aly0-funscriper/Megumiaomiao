@@ -10,6 +10,7 @@ Megumiaomiao 是一款基于 .NET 8 与 WPF 开发的 Windows 本地媒体库播
 - 静态缩略图缓存，以及可自行开启的低负载动态预览
 - 内嵌或独立 mpv 播放，支持进度跳转、拖动、全屏、A–B 循环与键盘控制
 - 兼容 MultiFunPlayer 的 mpv IPC，并识别媒体同目录下的 `.funscript`
+- 可勾选只显示拥有同名 `.funscript` 的视频，并在左下角显示缺少脚本的视频数量
 - 支持视频与多种音频格式、MP3 内嵌专辑封面和 LRC 歌词
 - 收藏夹、持久化播放列表、合集、随机播放、搜索与 Ctrl 多选管理
 - 中英文界面及中英文使用说明
@@ -55,6 +56,7 @@ Megumiaomiao is a Windows media-library player built with .NET 8 and WPF. It use
 - Cached static thumbnails and optional lightweight animated previews
 - Embedded or external mpv playback with seeking, dragging, fullscreen, A–B loop and keyboard controls
 - MultiFunPlayer-compatible mpv IPC and same-folder `.funscript` discovery
+- Optional matching-funscript-only filter with a missing-script count in the lower-left status area
 - Video and multi-format audio support, embedded MP3 album artwork and LRC lyrics
 - Favorites, persistent playlist, collections, shuffle playback, search and Ctrl multi-select actions
 - Chinese and English interfaces and user guides

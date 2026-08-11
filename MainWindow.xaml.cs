@@ -556,6 +556,7 @@ namespace VideoShelf
         {
             foreach (var card in videoCards.Values) card.DeactivatePreview();
             VideoList.Items.Clear();
+            UpdateFunscriptMissingCount();
             IEnumerable<VideoInfo> visibleVideos = GetFilteredVideos();
             if (folderViewMode)
             {
@@ -584,9 +585,25 @@ namespace VideoShelf
         private IEnumerable<VideoInfo> GetFilteredVideos()
         {
             IEnumerable<VideoInfo> videos = FavoritesCheck.IsChecked == true ? currentVideos.Where(video => video.IsFavorite) : currentVideos;
+            if (FunscriptOnlyCheck.IsChecked == true) videos = videos.Where(video => !video.IsAudio && HasMatchingFunscript(video));
             if (!string.IsNullOrWhiteSpace(SearchBox.Text)) videos = videos.Where(video => video.FileName.Contains(SearchBox.Text, StringComparison.OrdinalIgnoreCase));
             if (activeCollection != null) videos = videos.Where(video => activeCollection.VideoPaths.Contains(video.FilePath, StringComparer.OrdinalIgnoreCase));
             return videos.ToList();
+        }
+
+        private static bool HasMatchingFunscript(VideoInfo video)
+        {
+            if (video.IsAudio || string.IsNullOrWhiteSpace(video.FilePath)) return false;
+            try { return File.Exists(Path.ChangeExtension(video.FilePath, ".funscript")); }
+            catch { return false; }
+        }
+
+        private void UpdateFunscriptMissingCount()
+        {
+            int missing = currentVideos.Count(video => !video.IsAudio && !HasMatchingFunscript(video));
+            FunscriptMissingText.Text = config.UseEnglish
+                ? $"No matching funscript: {missing}"
+                : $"无对应 funscript：{missing}";
         }
 
         private void Overview_Click(object sender, RoutedEventArgs e)
@@ -820,6 +837,12 @@ namespace VideoShelf
             RefreshVideoList();
         }
 
+        private void FunscriptFilterChanged(object sender, RoutedEventArgs e)
+        {
+            if (!IsLoaded) return;
+            RefreshVideoList();
+        }
+
         private void LanguageChanged(object sender, RoutedEventArgs e)
         {
             if (config == null) return;
@@ -844,6 +867,10 @@ namespace VideoShelf
             EmbeddedCheck.Content = en ? "Embedded player" : "内嵌播放";
             PreviewCheck.Content = en ? "Hover preview" : "动态预览";
             FavoritesCheck.Content = en ? "♥ Favorites" : "♥ 收藏夹";
+            FunscriptOnlyCheck.Content = en ? "Has funscript" : "有 funscript";
+            FunscriptOnlyCheck.ToolTip = en
+                ? "Show only videos with a matching funscript"
+                : "勾选后只显示拥有同名 funscript 的视频";
             CollectionsButton.Content = en ? "Collections" : "合集";
             SettingsButton.Content = en ? "Settings" : "设置";
             RandomPlayCheck.Content = en ? "Shuffle" : "随机播放";
@@ -859,6 +886,7 @@ namespace VideoShelf
             BulkCollectionButton.Content = en ? "Add to collection" : "加入合集";
             BulkDeleteButton.Content = en ? "Delete selected" : "删除所选";
             ClearSelectionButton.Content = en ? "Clear selection" : "取消选择";
+            UpdateFunscriptMissingCount();
             string[] labels = en
                 ? new[] { "Default order", "File size ↑", "File size ↓", "Date added ↑", "Date added ↓", "Duration ↑", "Duration ↓" }
                 : new[] { "默认排序", "文件大小 ↑", "文件大小 ↓", "新增时间 ↑", "新增时间 ↓", "视频时长 ↑", "视频时长 ↓" };

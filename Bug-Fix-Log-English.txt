@@ -120,3 +120,7 @@ v0.4.34 (2026-08-11)
 - Search works within the current folder and its descendants.
 - Unified cache and normal-list rendering to reduce startup work.
 - Reused one media-folder index while building the tree to avoid repeated calculations.
+v0.4.35 (2026-08-11)
+- Added a “Has funscript” checkbox that shows only videos with a same-folder, same-name .funscript.
+- Added a lower-left count of videos without matching funscripts; audio is excluded.
+- The filter composes with search, Favorites, Collections, and folder browsing.
