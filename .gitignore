@@ -7,3 +7,12 @@ obj/
 *.suo
 *.zip
 Tools/*.exe
+
+# Local application data and generated media assets
+VideoCache.json
+config.json
+**/.VideoShelfCache/
+publish/
+artifacts/
+*.pdb
+*.log

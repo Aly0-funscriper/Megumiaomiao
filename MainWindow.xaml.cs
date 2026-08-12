@@ -594,8 +594,7 @@ namespace VideoShelf
         private static bool HasMatchingFunscript(VideoInfo video)
         {
             if (video.IsAudio || string.IsNullOrWhiteSpace(video.FilePath)) return false;
-            try { return File.Exists(Path.ChangeExtension(video.FilePath, ".funscript")); }
-            catch { return false; }
+            return FunscriptService.HasMatchingScript(video.FilePath);
         }
 
         private void UpdateFunscriptMissingCount()

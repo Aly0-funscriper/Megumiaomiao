@@ -125,3 +125,11 @@ v0.4.35 (2026-08-11)
 - Added a “Has funscript” checkbox that shows only videos with a same-folder, same-name .funscript.
 - Added a lower-left count of videos without matching funscripts; audio is excluded.
 - The filter composes with search, Favorites, Collections, and folder browsing.
+v0.4.36 (2026-08-11)
+- Video cards now render incrementally in batches of 60 near the scroll position instead of blocking the UI with thousands of controls.
+- Thumbnail processing continues outside the UI context, with progress updates throttled to roughly once every 120 ms.
+- Short-media exclusions are removed in one batch to avoid quadratic work on large libraries.
+- List refresh stops previews only for currently displayed cards instead of traversing every historical card.
+- Added sidecar recognition for `<video>.Lnip.funscript` and `<video>.Rnip.funscript` alongside the standard funscript.
+- Matching-script filtering and missing-script counts now treat either nipple-axis sidecar as a valid match.
+- The player timeline can render the standard, Lnip, and Rnip tracks together while preserving the original media path for MFP discovery.
