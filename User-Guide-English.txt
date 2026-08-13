@@ -28,4 +28,4 @@ Playback controls:
 FOLDER BROWSER
 Choose “Folders” for an Explorer-style view. Use the media-folder tree on the left, Back and Up buttons, or the breadcrumb path above the content. The right pane shows only the current folder's child folders and media. Search includes the current folder and its descendants, and navigation reuses the existing cache without regenerating thumbnails.
 FUNSCRIPT FILTER
-Enable “Has funscript” in the toolbar to show only videos with a same-name .funscript in the same folder. Disable it to restore all media. The lower-left status area continuously shows how many videos have no matching funscript; audio files are not included in that count.
+Enable “Has funscript” in the toolbar to show only videos with a same-name .funscript, .Lnip.funscript or .Rnip.funscript in the same folder. Disable it to restore all media. The lower-left status area continuously shows how many videos have no matching funscript; audio files are not included in that count. The playback timeline can draw the standard, Lnip and Rnip tracks together.
